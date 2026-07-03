@@ -33,9 +33,12 @@
 
 <br/>
 
-> **Jhol-Check** (Hindi: झोल — *a scam / something fishy*) is a production-grade AI system that fine-tunes **Qwen2.5-3B-Instruct** via QLoRA on 28,000 real-world India-specific scam examples, producing structured forensic evidence extraction — not just a YES/NO label. It accepts text messages and live call recordings, runs Whisper for transcription, and outputs a complete **scam intelligence report** with confidence scores, manipulation technique identification, evidence fragments with labeled psychological triggers, step-by-step reasoning, and recommended countermeasures. Deployed on Hugging Face Spaces via Docker.
+> **Jhol-Check** is a production-grade AI system that fine-tunes **Qwen2.5-3B-Instruct** via QLoRA on 28,000 real-world India-specific scam examples, producing structured forensic evidence extraction — not just a YES/NO label. It accepts text messages and live call recordings, runs Whisper for transcription, and outputs a complete **scam intelligence report** with confidence scores, manipulation technique identification, evidence fragments with labeled psychological triggers, step-by-step reasoning, and recommended countermeasures. Deployed on Hugging Face Spaces via Docker.
 
 <br/>
+
+<img width="1355" height="587" alt="Screenshot (2651)" src="https://github.com/user-attachments/assets/95669569-8bb0-43d1-813c-b10969d0e348" />
+
 
 </div>
 
@@ -87,7 +90,7 @@ Generic LLMs like GPT-4 and Gemini are generalists. They lack:
 </td>
 <td width="50%">
 
-### What Jhol-Check Does
+### What Jhol-Check🧐 Does
 Jhol-Check fine-tunes a 3B parameter model specifically on India-focused scam data and wraps it in a complete intelligence pipeline:
 
 - ✅ **Fine-tuned** Qwen2.5-3B on 28,000 scam examples
@@ -124,7 +127,7 @@ Jhol-Check fine-tunes a 3B parameter model specifically on India-focused scam da
 
 ```
                      ┌─────────────────────────────────────────────────┐
-                     │              Jhol-Check UI (Streamlit)           │
+                     │              Jhol-Check UI (Streamlit)          │
                      │    Text Input Tab  ·  Call Recording Tab        │
                      │    Quick Tests  ·  Evidence Cards  ·  JSON View │
                      └──────────────┬──────────────────┬───────────────┘
@@ -139,19 +142,19 @@ Jhol-Check fine-tunes a 3B parameter model specifically on India-focused scam da
                                     │                  │
                                     │            Transcript
                                     │                  │
-                     ┌──────────────▼──────────────────▼───────────────┐
-                     │         ScamAnalyzer (qwen_utils.py)             │
+                     ┌──────────────▼──────────────────▼─────────────────┐
+                     │         ScamAnalyzer (qwen_utils.py)              │
                      │                                                   │
-                     │  System Prompt: "You are an expert cybercrime    │
-                     │  and fraud detection analyst..."                 │
+                     │  System Prompt: "You are an expert cybercrime     │
+                     │  and fraud detection analyst..."                  │
                      │                                                   │
-                     │  ┌─────────────────────────────────────────┐    │
-                     │  │  Fine-tuned Qwen2.5-3B-Instruct         │    │
-                     │  │  QLoRA Adapter (PrachiSandipkumar/       │    │
-                     │  │  qwen_scam_high_accuracy)               │    │
-                     │  │  4-bit quantised · BitsAndBytes          │    │
-                     │  └──────────────────┬──────────────────────┘    │
-                     └─────────────────────┼────────────────────────────┘
+                     │  ┌─────────────────────────────────────────┐      │
+                     │  │  Fine-tuned Qwen2.5-3B-Instruct         │      │
+                     │  │  QLoRA Adapter (PrachiSandipkumar/      │      │
+                     │  │  qwen_scam_high_accuracy)               │      │
+                     │  │  4-bit quantised · BitsAndBytes         │      │
+                     │  └──────────────────┬──────────────────────┘      │
+                     └─────────────────────┼─────────────────────────────┘
                                            │
                                     Rich JSON Output
                                            │
@@ -264,7 +267,7 @@ Evidence:
 
 ### Construction Pipeline
 
-The dataset was built entirely from scratch using a custom Python pipeline (`build_v2.py`), not from a pre-existing Kaggle download.
+The dataset was built entirely from scratch using a custom Python pipeline, not from a pre-existing Kaggle download.
 
 ```
 Sources
@@ -392,29 +395,29 @@ Recommended Action:
 User uploads scam call recording (.mp3 / .wav / .m4a / .ogg)
                     │
         ┌───────────▼────────────┐
-        │  pydub preprocessing  │
-        │  → mono channel       │
-        │  → 16kHz resample     │
-        │  → export clean WAV   │
+        │  pydub preprocessing   │
+        │  → mono channel        │
+        │  → 16kHz resample      │
+        │  → export clean WAV    │
         └───────────┬────────────┘
                     │
         ┌───────────▼────────────┐
-        │  30-second chunking   │  ← handles calls of any length
-        │  (chunk_length=30000) │
+        │  30-second chunking    │  ← handles calls of any length
+        │  (chunk_length=30000)  │
         └───────────┬────────────┘
                     │
         ┌───────────▼────────────┐
-        │  Whisper-small ASR    │
-        │  (runs on CPU)        │
-        │  per-chunk inference  │
+        │  Whisper-small ASR     │
+        │  (runs on CPU)         │
+        │  per-chunk inference   │
         └───────────┬────────────┘
                     │
               Full transcript
                     │
         ┌───────────▼────────────┐
         │  ScamAnalyzer          │
-        │  (same pipeline as    │
-        │   text input)         │
+        │  (same pipeline as     │
+        │   text input)          │
         └────────────────────────┘
 ```
 
@@ -435,22 +438,19 @@ Jhol-Check/
 │   ├── qwen_utils.py         # ScamAnalyzer class — model loading, inference, JSON parsing
 │   └── whisper_util.py       # VoiceProcessor class — ASR pipeline, chunking
 │
-├── notebooks/
+├── Notebook/
 │   └── Qwen_FT_FINAL.ipynb   # Complete fine-tuning pipeline (Colab)
-│
-├── benchmark/
-│   ├── simple_benchmark.py   # Model comparison script (Qwen FT vs Gemini vs Base Qwen)
-│   ├── benchmark_100.jsonl   # Fixed 100-message evaluation set (50 scam + 50 legit)
-│   └── results/
-│       ├── results_qwen_ft.csv
-│       ├── leaderboard.png
-│       ├── benchmark_comparison.png
-│       ├── confusion_matrices.png
-│       └── summary_table.csv
-│
+|
 ├── Dockerfile                # Production container (Python 3.10-slim + ffmpeg)
-├── requirements.txt
-└── README.md
+├── requirements.txt          # Python dependency list
+├── README.md                 # Project overview, install/run instructions, docs
+├── CHANGELOG.md              # Release / change history
+├── CONTRIBUTING.md           # Contribution guidelines for the repo
+├── SECURITY.md               # Responsible security disclosure process
+├── .gitattributes            # Git file handling and line-ending rules
+└── .github/
+    └── workflows/
+        └── ci.yml            # GitHub Actions workflow for basic CI checks
 ```
 
 ---
@@ -460,24 +460,23 @@ Jhol-Check/
 ### Text Analysis — Scam Detected
 > OTP theft attempt: model identifies Fear + Authority + Urgency, extracts "Share OTP" as Credential Theft
 
-![Scam Detection](https://raw.githubusercontent.com/10Prachi2006/Jhol-Check/main/assets/scam_detected.png)
+<img width="1342" height="635" alt="Screenshot (2648)" src="https://github.com/user-attachments/assets/12531e7a-969a-4dc5-9ec6-861f2e5ec919" />
+
 
 ### Text Analysis — Legitimate Message
 > Real HDFC Bank OTP notification correctly classified as CLEAN with 95% confidence
 
-![Clean Detection](https://raw.githubusercontent.com/10Prachi2006/Jhol-Check/main/assets/clean_detected.png)
+<img width="1347" height="643" alt="Screenshot (2647)" src="https://github.com/user-attachments/assets/554b7a1c-4ede-4ecf-a35b-547284a3c969" />
 
 ### Voice Pipeline — Scam Call Recording
 > Actual bank fraud call transcribed by Whisper, then analyzed as Bank Fraud CRITICAL
 
-![Voice Analysis](https://raw.githubusercontent.com/10Prachi2006/Jhol-Check/main/assets/voice_analysis.png)
+<img width="1348" height="643" alt="Screenshot (2649)" src="https://github.com/user-attachments/assets/6c6f6d74-1bfc-4f77-9913-d6b26e643956" />
 
 ### Full JSON Schema Output
 > Complete structured intelligence report visible in the Full JSON tab
 
-![JSON Output](https://raw.githubusercontent.com/10Prachi2006/Jhol-Check/main/assets/json_output.png)
-
-> **Note:** Replace the image paths above with actual screenshots uploaded to your GitHub repo under `assets/`.
+<img width="1344" height="646" alt="Screenshot (2650)" src="https://github.com/user-attachments/assets/4fa039d4-ff78-44b6-9eee-f617b0ce0f42" />
 
 ---
 
@@ -564,12 +563,6 @@ HuggingFace Spaces (CPU Basic tier)
 ## 📈 Results & Evaluation
 
 ### Benchmark — 100 held-out messages (50 scam + 50 legit)
-
-| Model | Accuracy | Precision | Recall | F1 | Notes |
-|-------|----------|-----------|--------|----|-------|
-| **Fine-tuned Qwen (Yours)** | **100%** | **100%** | **100%** | **100%** | Real evaluation on held-out set |
-| Gemini 1.5 Flash | ~85% | ~89% | ~80% | ~84% | Estimated baseline — lacks India-specific training |
-| Base Qwen 2.5-3B | ~72% | ~71% | ~74% | ~73% | Same model, no fine-tuning |
 
 **Key insight:** Fine-tuning a 3B parameter model on 28,000 domain-specific examples produces a **+28 percentage point accuracy gain** over the base model and **outperforms Gemini 1.5 Flash** on India-focused scam detection — while running on a fraction of the compute.
 
