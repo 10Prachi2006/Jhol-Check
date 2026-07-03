@@ -1,6 +1,7 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,20,24&height=180&section=header&text=Jhol-Check%20%F0%9F%94%8D&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=Cybercrime%20%26%20Fraud%20Intelligence%20Terminal&descSize=18&descAlignY=58" width="100%"/>
+<!-- BANNER -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Jhol-Check🧐&fontSize=42&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=India-Specific%20Fraud%20Detection%20Intelligence%20Engine&descSize=18&descAlignY=58" width="100%"/>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
