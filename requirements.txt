@@ -1,0 +1,16 @@
+transformers>=4.44.0
+peft>=0.12.0
+bitsandbytes>=0.43.3
+accelerate>=0.32.0
+tqdm
+
+torchvision
+sentencepiece
+torch>=2.4.0
+scikit-learn
+pandas
+
+pydub>=0.25.1
+torchaudio>=2.4.0
+
+streamlit>=1.36.0
