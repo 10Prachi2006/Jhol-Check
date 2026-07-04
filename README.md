@@ -38,6 +38,9 @@
 
 <br/>
 
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/9ed1d3df-5cd9-43ba-911f-fec8c0aa6e0a" />
+
+
 <img width="1355" height="587" alt="Screenshot (2651)" src="https://github.com/user-attachments/assets/95669569-8bb0-43d1-813c-b10969d0e348" />
 
 
@@ -176,6 +179,8 @@ Jhol-Check fine-tunes a 3B parameter model specifically on India-focused scam da
     │  ]                 │    └─────────────────────┘    │   "Call 1930"      │
     └────────────────────┘                               └────────────────────┘
 ```
+
+<img width="1181" height="1331" alt="image" src="https://github.com/user-attachments/assets/bc90e2a2-5e1e-4e05-90d7-56d8231c686a" />
 
 ---
 
